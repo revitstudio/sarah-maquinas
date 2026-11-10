@@ -33,15 +33,12 @@ function copyPreview(title, value, label) {
   };
   openDialog(title);
 }
-function consultar(p) {
-  const message=p ? 'Olá, Sarah! Vi a empilhadeira '+p.marca+' '+p.modelo+' no seu site e gostaria de saber o valor e a disponibilidade. '+new URL(modelUrl(p),location.href).href : 'Olá, Sarah! Gostaria de ajuda para escolher uma empilhadeira. Minha carga pesa ___ e preciso elevá-la a ___ de altura.';
-  if(contato.whatsapp) { window.open("https://wa.me/"+contato.whatsapp+"?text="+encodeURIComponent(message),"_blank","noopener");return; }
-  copyPreview("Mensagem para a Sarah",message,"Prévia do WhatsApp para a demonstração. Você pode copiar a mensagem abaixo.");
+function whatsappUrl(p) {
+  const message = p
+    ? 'Olá, Sarah! Vi a empilhadeira '+p.marca+' '+p.modelo+' no seu site e gostaria de saber o valor e a disponibilidade. '+new URL(modelUrl(p),location.href).href
+    : 'Olá, Sarah! Gostaria de ajuda para escolher uma empilhadeira.';
+  return "https://wa.me/"+contato.whatsapp+"?text="+encodeURIComponent(message);
 }
-document.addEventListener("click",event=>{
-  const button=event.target.closest("[data-consulta]");
-  if(button) consultar(button.hasAttribute("data-modelo")?activeProduct:null);
-});
 function viewer(fotos, index, title) {
   dialog.classList.add("viewer");
   modal.innerHTML='<img><div class="viewerbar"><button aria-label="Foto anterior">←</button><span aria-live="polite"></span><button aria-label="Próxima foto">→</button></div>';
@@ -101,7 +98,7 @@ if($("#produto")){
   else{
     document.title=p.marca+" "+p.modelo+" | Sarah Máquinas";
     const specs={"Capacidade":p.capacidade,"Alimentação":p.alimentacao,...p.ficha,"Garantia":p.garantia,"Frete":p.frete};
-    $("#produto").innerHTML=`<article class="product"><div><button class="product-photo" aria-label="Ampliar foto de ${p.marca} ${p.modelo}"><img><span class="zoom">⤢ Ampliar</span></button><div class="thumbs"></div></div><div><p class="kicker"><i></i> EMPILHADEIRA · ${p.marca.toUpperCase()}</p><h1>${p.marca} ${p.modelo}</h1><p>${p.capacidade} · ${p.alimentacao}</p><div class="actions"><button class="primary" data-consulta data-modelo>Consultar este modelo ↗</button><button class="share">Copiar link</button></div><h2>Ficha técnica</h2><dl>${Object.entries(specs).map(([k,v])=>'<div><dt>'+k+'</dt><dd>'+v+'</dd></div>').join("")}</dl><h2>Condições de pagamento</h2><p class="commercial">${p.pagamento}</p></div></article>`;
+    $("#produto").innerHTML=`<article class="product"><div><button class="product-photo" aria-label="Ampliar foto de ${p.marca} ${p.modelo}"><img><span class="zoom">⤢ Ampliar</span></button><div class="thumbs"></div></div><div><p class="kicker"><i></i> EMPILHADEIRA · ${p.marca.toUpperCase()}</p><h1>${p.marca} ${p.modelo}</h1><p>${p.capacidade} · ${p.alimentacao}</p><div class="actions"><a class="primary" data-consulta data-modelo href="${whatsappUrl(p)}" target="_blank" rel="noopener noreferrer">Consultar este modelo ↗</a><button class="share">Copiar link</button></div><h2>Ficha técnica</h2><dl>${Object.entries(specs).map(([k,v])=>'<div><dt>'+k+'</dt><dd>'+v+'</dd></div>').join("")}</dl><h2>Condições de pagamento</h2><p class="commercial">${p.pagamento}</p></div></article>`;
     let selected=0;
     function select(i){selected=i;$(".product-photo img").src=media(p.fotos[i]);$(".product-photo img").alt=p.marca+" "+p.modelo+", vista "+(i+1);document.querySelectorAll(".thumbs button").forEach((b,j)=>b.setAttribute("aria-pressed",String(i===j)));}
     p.fotos.forEach((f,i)=>{const b=document.createElement("button");b.setAttribute("aria-label","Ver foto "+(i+1));b.innerHTML='<img src="'+media(f)+'" alt="">';b.onclick=()=>select(i);$(".thumbs").append(b);});
