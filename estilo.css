@@ -238,12 +238,39 @@ a.top-contact { display: inline-flex; align-items: center; justify-content: cent
   .bar { gap: 10px; }
 }
 
-/* Foto livre de sobreposição e setas decorativas ocultas apenas no celular. */
-.hero-mobile-photo { display: none; }
+/* Mobile: título na foto, Sarah livre no centro e conteúdo na base. */
+.hero-mobile-tagline { display: none; }
+.hero-title-rest { color: inherit; }
 @media(max-width:700px) {
   .cta-arrow { display: none; }
-  .hero-backdrop, .hero::before { display: none; }
-  .hero-inner { min-height: 0; padding-block: 34px 28px; }
-  .hero-mobile-photo { display: block; width: 100%; height: auto; margin-top: 28px; }
-  .hero-caption { margin-top: 24px; text-shadow: none; }
+  .hero { --mobile-photo-height: clamp(490px, 145vw, 760px); }
+  .hero-backdrop {
+    display: block; position: absolute; inset: 0 0 auto; width: 100%;
+    height: var(--mobile-photo-height); object-fit: cover; object-position: center top;
+  }
+  .hero::before {
+    display: block;
+    background: linear-gradient(to bottom, #171a1c45, #171a1c08 160px,
+      #171a1c00 calc(var(--mobile-photo-height) - 100px), #171a1c var(--mobile-photo-height));
+  }
+  .hero-inner {
+    display: grid; grid-template-columns: minmax(0,1fr);
+    grid-template-rows: var(--mobile-photo-height) auto auto;
+    min-height: 0; padding-block: 0 26px; gap: 0;
+  }
+  .hero-copy { display: contents; }
+  .hero-heading { grid-row: 1; align-self: start; padding-top: 32px; text-shadow: 0 2px 16px #0008; }
+  .hero-heading .kicker { margin-bottom: 18px; }
+  .hero .hero-copy h1 { font-size: clamp(38px, 10vw, 64px); }
+  .hero-title-rest { display: none; }
+  .hero-details { grid-row: 2; }
+  .hero-mobile-tagline {
+    display: block; font: 700 clamp(34px, 9vw, 52px)/1.03 'Barlow Condensed', 'Arial Narrow', Arial, sans-serif;
+    letter-spacing: -.025em;
+  }
+  .hero-mobile-tagline em { color: var(--orange); font-style: normal; }
+  .hero-copy .intro { max-width: none; margin-block: 18px 22px; }
+  .hero .actions { gap: 12px; }
+  .hero .primary { width: 100%; }
+  .hero-caption { grid-row: 3; justify-self: start; margin-top: 28px; text-shadow: none; }
 }
