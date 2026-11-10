@@ -237,3 +237,13 @@ a.top-contact { display: inline-flex; align-items: center; justify-content: cent
   .logo svg { width: 138px; }
   .bar { gap: 10px; }
 }
+
+/* Foto livre de sobreposição e setas decorativas ocultas apenas no celular. */
+.hero-mobile-photo { display: none; }
+@media(max-width:700px) {
+  .cta-arrow { display: none; }
+  .hero-backdrop, .hero::before { display: none; }
+  .hero-inner { min-height: 0; padding-block: 34px 28px; }
+  .hero-mobile-photo { display: block; width: 100%; height: auto; margin-top: 28px; }
+  .hero-caption { margin-top: 24px; text-shadow: none; }
+}
