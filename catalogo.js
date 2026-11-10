@@ -1,5 +1,5 @@
 // Transcrição dos três anúncios do catálogo de WhatsApp fornecidos pela Sarah.
-const contato = { whatsapp: "", instagram: "https://www.instagram.com/sarahempilhadeira/" };
+const contato = { whatsapp: "5511968480623", instagram: "https://www.instagram.com/sarahempilhadeira/" };
 const produtos = [
   {
     id: "lonking-fd35", marca: "Lonking", modelo: "FD35", capacidade: "3,5 t", alimentacao: "Diesel",
