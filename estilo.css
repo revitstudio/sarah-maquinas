@@ -74,6 +74,11 @@ header { position: sticky; top: 0; z-index: 20; background: var(--paper); color:
 .section-copy { max-width: 490px; color: #555d61; font-size: 17px; line-height: 1.75; }
 .section-copy p+p { margin-top: 16px; }
 .section-copy .text-link { margin-top: 24px; color: var(--ink); }
+.introduction { background: #24282a; color: var(--paper); }
+.introduction h2 span { color: var(--orange); }
+.introduction .section-copy { color: #cdd1d0; }
+.introduction .section-copy .text-link { color: #ff9a60; border-color: var(--orange); }
+.introduction .text-link:hover { color: var(--paper); }
 .catalog-section { background: #eae8e2; }
 .filters { border-color: #cdcdc7; padding-block: 24px; margin-top: 38px; }
 #brands button { border-radius: 2px; padding: 10px 20px; }
