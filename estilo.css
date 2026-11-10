@@ -226,3 +226,14 @@ footer .footer-bottom { border-top: 1px solid #ffffff20; display: flex; justify-
   .hero .hero-copy h1 br { display: block; }
 }
 
+
+/* Identidade aprovada: empilhadeira em traço, opção 3C. */
+.logo { display: inline-flex; flex: 0 0 auto; color: var(--ink); }
+.logo svg { display: block; width: 198px; height: auto; }
+footer .logo { color: var(--paper); }
+footer .logo svg { width: 220px; }
+a.top-contact { display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
+@media(max-width:700px) {
+  .logo svg { width: 138px; }
+  .bar { gap: 10px; }
+}
