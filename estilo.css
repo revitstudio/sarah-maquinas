@@ -215,3 +215,9 @@ footer .footer-bottom { border-top: 1px solid #ffffff20; display: flex; justify-
   footer .footer-bottom { align-items: flex-start; flex-direction: column; gap: 8px; }
   .footer-bottom small { width: auto; }
 }
+
+@media (max-width: 700px) {
+  .hero .hero-copy h1 { font-size: clamp(42px, 10vw, 60px); }
+  .hero .hero-copy h1 br { display: block; }
+}
+
