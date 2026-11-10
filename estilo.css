@@ -254,14 +254,14 @@ a.top-contact { display: inline-flex; align-items: center; justify-content: cent
       #171a1c00 calc(var(--mobile-photo-height) - 100px), #171a1c var(--mobile-photo-height));
   }
   .hero-inner {
-    display: grid; grid-template-columns: minmax(0,1fr);
+    display: grid; grid-template-columns: minmax(0,1fr); position: relative;
     grid-template-rows: var(--mobile-photo-height) auto auto;
     min-height: 0; padding-block: 0 26px; gap: 0;
   }
   .hero-copy { display: contents; }
   .hero-heading { grid-row: 1; align-self: start; padding-top: 32px; text-shadow: 0 2px 16px #0008; }
   .hero-heading .kicker { margin-bottom: 18px; }
-  .hero .hero-copy h1 { font-size: clamp(38px, 10vw, 64px); }
+  .hero .hero-copy h1 { font-size: clamp(38px, 10vw, 64px); position: absolute; top: calc(var(--mobile-photo-height) - 50px); left: 0; margin: 0; }
   .hero-title-rest { display: none; }
   .hero-details { grid-row: 2; }
   .hero-mobile-tagline {
